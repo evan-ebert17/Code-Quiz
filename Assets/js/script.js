@@ -11,7 +11,7 @@ var
 //array that stores questions
 //array that stores answers
 
-//-----------------
+//------------------
 //general things needed;
 //timer that goes down by 10 every time a wrong answer gets chosen
 //localstorage the Highscores to be displayed
@@ -23,6 +23,6 @@ var
 //function that generates html elements dynamically on new page load
 //when a button is clicked (tenative) display little message at the bottom "wrong" or "correct"
 //randomly generate the order of the questions so that you dont always have the same order or layout of the answers (tenative)
-//------------------
+//-------------------
 
 //
