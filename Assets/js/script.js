@@ -1,20 +1,63 @@
 //todo list:
 // global variables that basically just target HTML elemtns that we are going to reference
-var headerEl
-var paragraphEl
-var highScore
-var buttonEl
-var timerText
-var h2El
-var 
+var headerEl = document.querySelector("h1");
+var paragraphEl = document.querySelector("p");
+var buttonEl = document.querySelector("button");
+var h2El = document.querySelector("h2");
+var ulQuestionList = document.querySelector("ul");
+var startButton = document.getElementById("startbutton");
+
 
 //array that stores questions
+var questions = [
+    `Arrays in JavaScript can be used to store _____`,
+    `Commonly used Data Types DO NOT include: `,
+    `Conditions in an if/else statement are denoted by: `,
+    `String values must be inclosed in _______ when stored as variables`,
+    `A very useful tool that can be used during development and debugging for printing to the console is: `];
 //array that stores answers
-
+var answers = [
+    [`Numbers`, `Other Arrays`, `Booleans`, `All of the Above`], 
+    [`Strings`, `Booleans`, `Alerts`, `Numbers`],
+    [`Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
+    [`Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
+    [`JavaScript`, `if/else statements`, `console.log-ing`, `Precoding`]
+];
 //------------------
 //general things needed;
-//timer that goes down by 10 every time a wrong answer gets chosen
+//buttonsfor the answers
+//when main menu button clicked, dynamically generate html
+var mainMenu = function generateHTML() {
+    //this loops through all the elements
+    for (let i = 0; i < questions.length; i++) {
+        var questionHeader = document.createElement('h2');
+        questionHeader.textContent = questions;
+        h2El.append(questionHeader);
+
+    }
+}
+
+
+   
+    
+//timer 
+var countdownTimer = function timer() {
+    var sec = 75;
+    var timer = setInterval( function(){
+        document.querySelector('h3').innerHTML = 'Timer: ' + sec;
+        sec--;
+
+        if (sec < 0) {
+            clearInterval(timer);
+        }
+
+    }, 1000);
+};
+//that goes down by 10 every time a wrong answer gets chosen
+
+
 //localstorage the Highscores to be displayed
+var highScore 
 // with the highscores, a way to add a name / unique value to each of the highscores
 //highscores determined by time left on timer, sort low to high
 //"view highscores" button
@@ -26,3 +69,5 @@ var
 //-------------------
 
 //
+
+startButton.addEventListener('click', mainMenu);
