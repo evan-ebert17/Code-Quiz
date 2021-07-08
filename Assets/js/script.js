@@ -4,9 +4,9 @@ var headerEl = document.querySelector("h1");
 var paragraphEl = document.querySelector("p");
 var buttonEl = document.querySelector("button");
 var h2El = document.querySelector("h2");
-var ulQuestionList = document.querySelector("ul");
+// var ulQuestionList = document.querySelector("ul");
 var startButton = document.getElementById("startbutton");
-
+var i = 0;
 
 //array that stores questions
 var questions = [
@@ -27,19 +27,40 @@ var answers = [
 //general things needed;
 //buttonsfor the answers
 //when main menu button clicked, dynamically generate html
-var mainMenu = function generateHTML() {
-    //this loops through all the elements
-    for (let i = 0; i < questions.length; i++) {
-        var questionHeader = document.createElement('h2');
-        questionHeader.textContent = questions;
-        h2El.append(questionHeader);
 
+
+// var mainMenu = function generateHTML() {
+//     //this loops through all the elements
+//     for (let i = 0; i < questions.length; i++) {
+
+//         var questionHeader = document.createElement('h2');
+//         questionHeader.textContent = questions;
+//         h2El.append(questionHeader);
+//     }
+// }
+
+
+var index = 0;
+
+startButton.addEventListener('click', function startQuiz() {
+    //if this is the last question hide and displays quiz ends 
+    if (startButton)           
+    if (index >= questions.length) {
+        document.getElementById('h2element').innerHTML = '<div>Quiz End, Thank you</div>'
+        document.getElementById('').style.visibility = 'hidden ';
+        return false;
     }
-}
 
-
-   
+    var htmlAdd = ' <div> ' + questions[index] + ' </div> <div>';
+    for (var i = 0; i < answers[index].length; i++) {
+        htmlAdd += '<label><input type="radio" name="ans" value="' 
+             + answers[index][i] + '"/ > ' + answers[index][i] + ' </label>';
+    }
+    htmlAdd += '</div > ';
+    document.getElementById('h2element').innerHTML = htmlAdd;
     
+    index++;
+})
 //timer 
 var countdownTimer = function timer() {
     var sec = 75;
@@ -70,4 +91,5 @@ var highScore
 
 //
 
-startButton.addEventListener('click', mainMenu);
+// startButton.addEventListener('click', mainMenu);
+startButton.addEventListener('click', countdownTimer);
