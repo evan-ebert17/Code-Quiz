@@ -41,26 +41,13 @@ var answers = [
 
 
 var index = 0;
-
-startButton.addEventListener('click', function startQuiz() {
-    //if this is the last question hide and displays quiz ends 
-    if (startButton)           
-    if (index >= questions.length) {
-        document.getElementById('h2element').innerHTML = '<div>Quiz End, Thank you</div>'
-        document.getElementById('').style.visibility = 'hidden ';
-        return false;
-    }
-
-    var htmlAdd = ' <div> ' + questions[index] + ' </div> <div>';
-    for (var i = 0; i < answers[index].length; i++) {
-        htmlAdd += '<label><input type="radio" name="ans" value="' 
-             + answers[index][i] + '"/ > ' + answers[index][i] + ' </label>';
-    }
-    htmlAdd += '</div > ';
-    document.getElementById('h2element').innerHTML = htmlAdd;
+headerEl.onload =  function generateTitle() {
+    document.querySelector('h1').innerHTML = "JS Quiz"
     
-    index++;
-})
+};
+
+
+
 //timer 
 var countdownTimer = function timer() {
     var sec = 75;
