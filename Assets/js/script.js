@@ -51,6 +51,7 @@ var questions = [
 //buttonsfor the answers
 //when main menu button clicked, dynamically generate html
 
+
 startButton.addEventListener('click', function hideButton() {
     startButton.style.visibility = 'hidden';
 })
@@ -60,7 +61,7 @@ let currentQuestion;
 startButton.addEventListener('click', startQuiz)
 
 function startQuiz() {
-var blurb = document.querySelector('.introtext');
+ var blurb = document.querySelector('.introtext');
 // var blurbHeader = document.querySelector('.beginheader');
 
     answerSection.innerHTML = "";
@@ -181,7 +182,7 @@ function highscorePage() {
     var highscoreButtonMake = document.createElement('button');
     highscoreButtonMake.textContent = "Return";
     highscoreHeader.textContent = 'Highscores: ';
-    highscoreScore.textContent = `${localStorage.getItem('initals', nameholder)}: ${localStorage.getItem('score')}.`;
+    highscoreScore.textContent = localStorage.getItem('initials') +`: ${localStorage.getItem('score')}.`;
     generatedPages.append(highscoreHeader);
     highscoreHeader.appendChild(highscoreScore);
     highscoreHeader.appendChild(highscoreButtonMake);
@@ -193,7 +194,6 @@ function highscorePage() {
  var highscoreButton = document.querySelector('.highscorebutton');
  highscoreButton.addEventListener('click', function (event) {
      event.preventDefault();
-     generatedPages.innerHTML = "";
-     startPage.innerHTML = "";
      highscorePage();
+
  })
