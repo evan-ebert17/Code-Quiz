@@ -13,8 +13,7 @@ var correctAnswer;
 var questionSection = document.getElementById('questions');
 var answerSection = document.getElementById('answers');
 var highscoreMain = document.getElementById('highscores');
-var correct = 0
-var incorrect = 0
+var incorrect = 10;
 var qIndex = 0
 var scoreholder = [];
 var nameholder = [];
@@ -92,12 +91,6 @@ var countdownTimer = function timer() {
         sec--;
         timertext.className = ".timer";
 
-        if(questions.answer) {
-            return;
-        } else {
-            sec - 10;
-        }
-
         if (sec < 0) {
             clearInterval(timer);
             timertext.style.visibility = 'hidden';
@@ -115,29 +108,21 @@ function choiceSelected(event) {
     console.log('u picked a choice!!', event.target.innerHTML)
     if (event.target.innerHTML === currentQuestion.answer) {
         console.log('U got it right!')
-
-
     } else {
-        console.log('U got it wrong!!')
-
+        console.log('U got it wrong!!');
+        sec = sec - incorrect;
     }
+
     qIndex++
 
     if (qIndex >= questions.length) {
         endGame()
-
     } else {
         startQuiz()
     }
-
 }
 
-// let formMake;
-// let inputMake;
-// let scoreholder;
-// let nameholder;
 let buttonMake;
-
 function endGame() {
     // clearing the screen putting new stuff on the page!
     answerSection.innerHTML = "";
@@ -176,7 +161,7 @@ function getScore() {
     scoreholder.push(sec);
     nameholder.push(nameInput.value);
     console.log(nameholder)
-    localStorage.setItem('initials', nameholder[0]);
+    localStorage.setItem('initials', nameholder);
     localStorage.setItem('score', scoreholder);
     highscorePage();
 });
@@ -187,11 +172,17 @@ function highscorePage() {
     startPage.innerHTML = "";
     var highscoreHeader = document.createElement('h1');
     var highscoreScore = document.createElement('h5');
+    var highscoreButtonMake = document.createElement('button');
+    highscoreButtonMake.textContent = "Return";
     highscoreHeader.textContent = 'Highscores: ';
-    highscoreScore.textContent = `${localStorage.getItem('initals', nameholder[0])}: ${localStorage.getItem('score')}.`;
+    highscoreScore.textContent = `${localStorage.getItem('initals', nameholder)}: ${localStorage.getItem('score')}.`;
     generatedPages.append(highscoreHeader);
     highscoreHeader.appendChild(highscoreScore);
- }   
+    highscoreHeader.appendChild(highscoreButtonMake);
+    highscoreButtonMake.addEventListener('click', function() {
+        location.reload();
+    });
+ };   
 
 //that goes down by 10 every time a wrong answer gets chosen
 //--- how to get ^ to work,
