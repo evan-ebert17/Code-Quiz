@@ -5,13 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
-    <link src="stylesheet" href="Assets/css/style.css">
+    <link rel="stylesheet" href="./Assets/css/style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
     
 </head>
 <body>
     <h1 id="quiztitle"></h1>
-    <div>
-        <h3></h3>
+    <div id="maindiv">
+        <h3 class="beginheader">JS Quiz</h3>
+        <p class="introtext" id="introtext">This is a quiz designed to help you understand some of the fundamentals of JavaScript, press the button below to start the Quiz.</p>
+        <button class="highscorebutton">Highscores</button>
+        <button id="startbutton">Begin Quiz</button>
     </div>
 
     <div id="menu">
@@ -19,7 +25,6 @@
 
         </h1>
         <p></p>
-        <button id="startbutton">Begin Quiz</button>
     </div>
 
     <div id="questionscreen">
@@ -40,7 +45,7 @@
     </div>
 
     <div id="highscores">
-        
+
     </div>
 
 

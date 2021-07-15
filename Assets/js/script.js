@@ -7,7 +7,7 @@ var buttonEl = document.querySelector("#button");
 var h2El = document.querySelector("h2");
 // var ulQuestionList = document.querySelector("ul");
 var startButton = document.getElementById("startbutton");
-var startPage = document.getElementById("menu");
+var startPage = document.getElementById("maindiv");
 var generatedPages = document.getElementById("questionscreen");
 var correctAnswer;
 var questionSection = document.getElementById('questions');
@@ -16,7 +16,7 @@ var highscoreMain = document.getElementById('highscores');
 var incorrect = 10;
 var qIndex = 0
 var scoreholder = [];
-var nameholder = [];
+
 
 var questions = [
     {
@@ -37,12 +37,12 @@ var questions = [
     {
         question: `String values must be inclosed in _______ when stored as variables`,
         choices: [`Parenthesis`, `Curly Brackets`, `Brackets`,  `Quotation Marks`],
-        answer: `Alerts`
+        answer: `Quotation Marks`
     },
     {
         question: `A very useful tool that can be used during development and debugging for printing to the console is: `,
         choices: [`JavaScript`, `if/else statements`,  `console.log-ing`, `Precoding`],
-        answer: `Alerts`
+        answer: `console.log-ing`
     },
 ];
 
@@ -60,9 +60,12 @@ let currentQuestion;
 startButton.addEventListener('click', startQuiz)
 
 function startQuiz() {
+var blurb = document.querySelector('.introtext');
+// var blurbHeader = document.querySelector('.beginheader');
 
-    answerSection.innerHTML = ""
-
+    answerSection.innerHTML = "";
+    blurb.innerHTML = "";
+    // blurbHeader.innerHTML = "";
     currentQuestion = questions[qIndex];
     questionSection.innerHTML = currentQuestion.question;
 
@@ -89,7 +92,7 @@ var countdownTimer = function timer() {
         var timertext = document.querySelector('h3');
         timertext.innerHTML = 'Timer: ' + sec;
         sec--;
-        timertext.className = ".timer";
+        timertext.className = "timer";
 
         if (sec < 0) {
             clearInterval(timer);
@@ -103,6 +106,8 @@ var countdownTimer = function timer() {
 
     }, 1000);
 };
+
+startButton.addEventListener('click', countdownTimer);
 
 function choiceSelected(event) {
     console.log('u picked a choice!!', event.target.innerHTML)
@@ -143,8 +148,6 @@ function endGame() {
     console.log(inputMake);
     buttonMake.classList.add('button');
 
-    // scoreDisplay.classList.add('score');
-    // questionSection.append(scoreDisplay);
     questionSection.append(scoreDisplay);
     answerSection.append(nameInput);
     answerSection.append(formMake);
@@ -153,16 +156,19 @@ function endGame() {
 
     getScore();
 }
-
+var nameholder = [];
 function getScore() {
     buttonMake.addEventListener('click', function(event) {
     event.preventDefault();
-    nameInput = document.getElementById("inputName");
+    
+    var nameInput = document.getElementById("inputName");
     scoreholder.push(sec);
     nameholder.push(nameInput.value);
     console.log(nameholder)
+
     localStorage.setItem('initials', nameholder);
     localStorage.setItem('score', scoreholder);
+
     highscorePage();
 });
 }
@@ -184,28 +190,10 @@ function highscorePage() {
     });
  };   
 
-//that goes down by 10 every time a wrong answer gets chosen
-//--- how to get ^ to work,
-//pull down var sec when function endgame() is run
-//clear the text content on page and append a text box and have it display the
-//high score above it, also when the submit button is clicked,
-//clear out all the text content again, and generate the high scorescreen and
-//stick the initials and the time into localstorage and when the button is
-//clicked display .localstorage by having the (example below)
-// highscore.localStorage('highscorename', event.target.innerHTML)
-// highscore.localStorage('timerscore', event.target.innerHTML)
-// then print those in a seperate window, potentially an external HTML and
-//whenever button is clicked go to the page and run function.
-
-//localstorage the Highscores to be displayed
-
-// with the highscores, a way to add a name / unique value to each of the highscores
-//highscores determined by time left on timer, sort low to high
-//"view highscores" button
-//when "startquiz" is pressed, run function that is the whole quiz
-//hiding and generating the whole quiz elements (probably display="none" or .style="hidden" or .stlye="")
-//function that generates html elements dynamically on new page load
-//when a button is clicked (tenative) display little message at the bottom "wrong" or "correct"
-//randomly generate the order of the questions so that you dont always have the same order or layout of the answers (tenative)
-//-------------------
-startButton.addEventListener('click', countdownTimer);
+ var highscoreButton = document.querySelector('.highscorebutton');
+ highscoreButton.addEventListener('click', function (event) {
+     event.preventDefault();
+     generatedPages.innerHTML = "";
+     startPage.innerHTML = "";
+     highscorePage();
+ })

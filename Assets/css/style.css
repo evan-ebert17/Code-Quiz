@@ -1,0 +1,44 @@
+:root {
+    --darkblue: #2F3061;
+    --blue: #0E34A0;
+    --text_color: #DFDFDF;
+}
+
+
+* {
+    font-family: 'Mukta', sans-serif;
+}
+
+.timer {
+    float: right;
+}
+
+#inputname {
+    height: 3vh;
+}
+
+.beginheader {
+    text-align: center;
+}
+
+.introtext {
+    text-align: center;
+}
+
+.beginbutton {
+    position: absolute;
+    
+}
+
+.highscorebutton {
+    float: right;
+}
+
+button {
+    margin-right: 10px;
+    background-color: var(--darkblue);
+    color: var(--text_color);
+    font-size: 3vh;
+    border-radius: 7%;
+    
+}
