@@ -12,25 +12,12 @@ var generatedPages = document.getElementById("questionscreen");
 var correctAnswer;
 var questionSection = document.getElementById('questions');
 var answerSection = document.getElementById('answers');
+var highscoreMain = document.getElementById('highscores');
 var correct = 0
 var incorrect = 0
 var qIndex = 0
-
-//array that stores questions
-// var questions = [
-//     `Arrays in JavaScript can be used to store _____`,
-//     `Commonly used Data Types DO NOT include: `,
-//     `Conditions in an if/else statement are denoted by: `,
-//     `String values must be inclosed in _______ when stored as variables`,
-//     `A very useful tool that can be used during development and debugging for printing to the console is: `];
-// //array that stores answers
-// var answers = [
-//     [`Numbers`, `Other Arrays`, `Booleans`, `All of the Above`], 
-//     [`Strings`, `Booleans`, `Alerts`, `Numbers`],
-//     [ `Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
-//     [`Parenthesis`, `Curly Brackets`, `Brackets`,  `Quotation Marks`],
-//     [`JavaScript`, `if/else statements`,  `console.log-ing`, `Precoding`]
-// ];
+var scoreholder = [];
+var nameholder = [];
 
 var questions = [
     {
@@ -105,10 +92,17 @@ var countdownTimer = function timer() {
         sec--;
         timertext.className = ".timer";
 
+        if(questions.answer) {
+            return;
+        } else {
+            sec - 10;
+        }
+
         if (sec < 0) {
             clearInterval(timer);
             timertext.style.visibility = 'hidden';
         } else if (qIndex >= questions.length) {
+            clearInterval(timer);
             timertext.style.visibility = 'hidden';
         } else {
             return;
@@ -146,8 +140,8 @@ let buttonMake;
 
 function endGame() {
     // clearing the screen putting new stuff on the page!
-    answerSection.innerHTML = "l";
-    questionSection.innerHTML = "l";
+    answerSection.innerHTML = "";
+    questionSection.innerHTML = "";
 
     var formMake = document.createElement('form');
     var inputMake = document.createElement('input');
@@ -178,31 +172,26 @@ function endGame() {
 function getScore() {
     buttonMake.addEventListener('click', function(event) {
     event.preventDefault();
-    scoreholder = [];
-    nameholder = [];
     nameInput = document.getElementById("inputName");
     scoreholder.push(sec);
     nameholder.push(nameInput.value);
     console.log(nameholder)
-    localStorage.setItem('initials', nameholder);
+    localStorage.setItem('initials', nameholder[0]);
     localStorage.setItem('score', scoreholder);
-    console.log(localStorage);
-
-    if(nameholder[0] == '') {
-        getScore();
-    } else {
-        highscorePage();
-    }
-    });
+    highscorePage();
+});
 }
 
 function highscorePage() {
-    buttonMake.addEventListener('click', function (event) {
-     event.preventDefault();
-     generatedPages.innerHTML = "";
-
- })   
-}
+    generatedPages.innerHTML = "";
+    startPage.innerHTML = "";
+    var highscoreHeader = document.createElement('h1');
+    var highscoreScore = document.createElement('h5');
+    highscoreHeader.textContent = 'Highscores: ';
+    highscoreScore.textContent = `${localStorage.getItem('initals', nameholder[0])}: ${localStorage.getItem('score')}.`;
+    generatedPages.append(highscoreHeader);
+    highscoreHeader.appendChild(highscoreScore);
+ }   
 
 //that goes down by 10 every time a wrong answer gets chosen
 //--- how to get ^ to work,
@@ -228,8 +217,4 @@ function highscorePage() {
 //when a button is clicked (tenative) display little message at the bottom "wrong" or "correct"
 //randomly generate the order of the questions so that you dont always have the same order or layout of the answers (tenative)
 //-------------------
-
-//
-
-// startButton.addEventListener('click', mainMenu);
 startButton.addEventListener('click', countdownTimer);
