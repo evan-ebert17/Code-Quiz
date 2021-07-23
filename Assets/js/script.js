@@ -64,9 +64,9 @@ function startQuiz() {
  var blurb = document.querySelector('.introtext');
 // var blurbHeader = document.querySelector('.beginheader');
 
+    // blurbHeader.innerHTML = "";
     answerSection.innerHTML = "";
     blurb.innerHTML = "";
-    // blurbHeader.innerHTML = "";
     currentQuestion = questions[qIndex];
     questionSection.innerHTML = currentQuestion.question;
 
