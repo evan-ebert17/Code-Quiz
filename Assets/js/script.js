@@ -31,17 +31,17 @@ var questions = [
     },
     {
         question: `Conditions in an if/else statement are denoted by: `,
-        choices: [ `Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
+        choices: [`Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
         answer: `Parenthesis`
     },
     {
         question: `String values must be inclosed in _______ when stored as variables`,
-        choices: [`Parenthesis`, `Curly Brackets`, `Brackets`,  `Quotation Marks`],
+        choices: [`Parenthesis`, `Curly Brackets`, `Brackets`, `Quotation Marks`],
         answer: `Quotation Marks`
     },
     {
         question: `A very useful tool that can be used during development and debugging for printing to the console is: `,
-        choices: [`JavaScript`, `if/else statements`,  `console.log-ing`, `Precoding`],
+        choices: [`JavaScript`, `if/else statements`, `console.log-ing`, `Precoding`],
         answer: `console.log-ing`
     },
 ];
@@ -61,8 +61,8 @@ let currentQuestion;
 startButton.addEventListener('click', startQuiz)
 
 function startQuiz() {
- var blurb = document.querySelector('.introtext');
-// var blurbHeader = document.querySelector('.beginheader');
+    var blurb = document.querySelector('.introtext');
+    // var blurbHeader = document.querySelector('.beginheader');
 
     // blurbHeader.innerHTML = "";
     answerSection.innerHTML = "";
@@ -75,7 +75,7 @@ function startQuiz() {
         const choice = currentQuestion.choices[i];
 
         var buttonA = document.createElement("button");
-        buttonA.add
+        //buttonA.add
         buttonA.innerHTML = choice;
         buttonA.classList.add("choice-btn");
         buttonA.addEventListener('click', choiceSelected)
@@ -88,7 +88,7 @@ function startQuiz() {
 var sec = 75;
 //timer 
 var countdownTimer = function timer() {
-    
+
     var timer = setInterval(function () {
         var timertext = document.querySelector('h3');
         timertext.innerHTML = 'Timer: ' + sec;
@@ -146,6 +146,7 @@ function endGame() {
     formMake.classList.add('form');
     inputMake.setAttribute("id", "inputName");
     inputMake.setAttribute("type", "text");
+    inputMake.setAttribute("placeholder", 'JFK')
     console.log(inputMake);
     buttonMake.classList.add('button');
 
@@ -159,19 +160,19 @@ function endGame() {
 }
 var nameholder = [];
 function getScore() {
-    buttonMake.addEventListener('click', function(event) {
-    event.preventDefault();
-    
-    var nameInput = document.getElementById("inputName");
-    scoreholder.push(sec);
-    nameholder.push(nameInput.value);
-    console.log(nameholder)
+    buttonMake.addEventListener('click', function (event) {
+        event.preventDefault();
 
-    localStorage.setItem('initials', nameholder);
-    localStorage.setItem('score', scoreholder);
+        var nameInput = document.getElementById("inputName");
+        scoreholder.push(sec);
+        nameholder.push(nameInput.value);
+        console.log(nameholder)
 
-    highscorePage();
-});
+        localStorage.setItem('initials', nameholder);
+        localStorage.setItem('score', scoreholder);
+
+        highscorePage();
+    });
 }
 
 function highscorePage() {
@@ -182,18 +183,18 @@ function highscorePage() {
     var highscoreButtonMake = document.createElement('button');
     highscoreButtonMake.textContent = "Return";
     highscoreHeader.textContent = 'Highscores: ';
-    highscoreScore.textContent = localStorage.getItem('initials') +`: ${localStorage.getItem('score')}.`;
+    highscoreScore.textContent = localStorage.getItem('initials') + `: ${localStorage.getItem('score')}.`;
     generatedPages.append(highscoreHeader);
     highscoreHeader.appendChild(highscoreScore);
     highscoreHeader.appendChild(highscoreButtonMake);
-    highscoreButtonMake.addEventListener('click', function() {
+    highscoreButtonMake.addEventListener('click', function () {
         location.reload();
     });
- };   
+};
 
- var highscoreButton = document.querySelector('.highscorebutton');
- highscoreButton.addEventListener('click', function (event) {
-     event.preventDefault();
-     highscorePage();
+var highscoreButton = document.querySelector('.highscorebutton');
+highscoreButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    highscorePage();
 
- })
+})

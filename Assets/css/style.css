@@ -33,7 +33,10 @@
 .highscorebutton {
     float: right;
 }
-
+input {
+    height: 3vh;
+    font-size: 3vh;
+}
 button {
     margin-right: 10px;
     background-color: var(--darkblue);
